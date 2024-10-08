@@ -4,8 +4,21 @@ import { jwtSecret } from "../middlewares/authMiddleware.js";
 
 import { User } from "../models/user.model.js";
 import { isCurrentUser } from "../utils/user.utils.js";
+import { createUserSchema } from "../validation/user.validationSchema.js";
 
 export const registerUser = async (request, response) => {
+	// try {
+	// 	createUserSchema.parse(request.body);
+	// } catch (error) {
+	// 	return response
+	// 		.status(400)
+	// 		.send(
+	// 			`Validation error: \n${error.errors
+	// 				.map((error) => error.message)
+	// 				.join("\n")}`
+	// 		);
+	// }
+
 	const { email, password, username } = request.body;
 
 	if (!email || !password || !username) {
